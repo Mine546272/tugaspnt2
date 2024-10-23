@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pnttugas2
+  labels:
+    app: pnttugas2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pnttugas2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: pnttugas2
+    spec:
+      containers:
+      - name: pnttugas2-container
+        image: fondry/tugas1:v0.0
+        ports:
+        - containerPort: 8080
